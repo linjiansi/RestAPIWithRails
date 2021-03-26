@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  api:
+    build: .
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/BookManager-server
+      - bundle:/bundle
+    depends_on:
+      - db
+    command: ["rails", "server", "-b", "0.0.0.0"]
+
+  db:
+    image: mysql:8.0.21
+    volumes:
+      - mysql_data:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_DATABASE: 'BookManager_server_development'
+
+volumes:
+  mysql_data:
+    driver: local
+  bundle:
+    driver: local        
+                
+                
+      
+
