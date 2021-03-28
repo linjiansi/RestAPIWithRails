@@ -31,3 +31,5 @@
 .env
 .env.*
 
+# Ignore RubyMine files
+.idea/
