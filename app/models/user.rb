@@ -1,13 +1,17 @@
 class User < ApplicationRecord
 
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]\z/i
+  has_secure_password
+  has_many :books
 
-  has_secure_token :token, length: 36
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :email,
+            presence: true,
             length: { minimum: 6 },
             format: { with: VALID_EMAIL_REGEX },
             uniqueness: true
 
-  validates :password, length: { minimum: 6 }
+  validates :password,
+            presence: true,
+            length: { minimum: 6 }
 end
