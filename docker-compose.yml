@@ -10,6 +10,8 @@ services:
     depends_on:
       - db
     command: ["rails", "server", "-b", "0.0.0.0"]
+    tty: true
+    stdin_open: true
 
   db:
     image: mysql:8.0.21
