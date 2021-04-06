@@ -51,4 +51,15 @@ class ApplicationController < ActionController::API
         }
     }
   end
+
+  rescue_from Exeption, with: :internal_error
+
+  def internal_error
+    render json: {
+        result: {
+            message: "システムエラーが起こりました",
+            description: "システム管理者にお問い合わせください"
+        }
+    }
+  end
 end
