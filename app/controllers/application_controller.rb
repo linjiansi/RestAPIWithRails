@@ -10,7 +10,7 @@ class ApplicationController < ActionController::API
 
   def decoded_token
     if auth_header
-      token = auth_header.split(' ')[1]
+      token = auth_header.split[1]
       begin
         JWT.decode(token, 'shoshosdodh', true, algorithm: 'HS256')
       rescue JWT::DecodeError
@@ -30,13 +30,17 @@ class ApplicationController < ActionController::API
     !!logged_in_user
   end
 
-  def authorized_checker
+  def error_message
     render json: {
-        result: {
-          message: '見つかりません',
-          description: 'システム管理者にお問い合わせください'
-        }
-    } unless logged_in?
+      result: {
+        message: '見つかりません',
+        description: 'システム管理者にお問い合わせください'
+      }
+    }
+  end
+
+  def authorized_checker
+    error_message unless logged_in?
   end
 
   def authorize_error
