@@ -52,7 +52,7 @@ class ApplicationController < ActionController::API
     }
   end
 
-  rescue_from Exeption, with: :internal_error
+  rescue_from StandardError, with: :internal_error
 
   def internal_error
     render json: {
