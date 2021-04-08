@@ -23,6 +23,19 @@ services:
       MYSQL_PASSWORD: 'password'
       MYSQL_ROOT_PASSWORD: 'root'
       MYSQL_DATABASE: 'BookManager_server_development'
+    ports:
+      - '4306:3306'        
+  
+  test-db:
+    image: mysql:8.0.21
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_USER: 'test_user'
+      MYSQL_PASSWORD: 'password_test'
+      MYSQL_ROOT_PASSWORD: 'root_test'
+      MYSQL_DATABASE: 'BookManager_server_test'
+    ports: 
+      - '5306:3306'
 
 volumes:
   mysql_data:
