@@ -1,6 +1,28 @@
-inherit_from: .rubocop_todo.yml
-
 AllCops:
   NewCops: enable
   Exclude:
-    - spec/**/*
+    - 'spec/**/*'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'bin/*'
+    - 'Gemfile'
+
+Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+ClassAndModuleChildren:
+  EnforcedStyle: compact
+
+StringLiterals:
+  EnforcedStyle: double_quotes
+
+MethodLength:
+  CountComments: false
+  Max: 20
+
+Metrics/AbcSize:
+  Enabled: true
+  Max: 20
