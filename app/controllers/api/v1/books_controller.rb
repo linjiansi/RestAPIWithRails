@@ -21,7 +21,7 @@ class Api::V1::BooksController < ApplicationController
   end
 
   def add_book
-    book = logged_in_user.books.create(book_param)
+    book = logged_in_user.books.create(book_params)
     if book.present?
       render json: {
           status: 200,
@@ -58,7 +58,7 @@ class Api::V1::BooksController < ApplicationController
 
   def edit_book
     book = logged_in_user.books.find_by(id: params[:id])
-    if book.update(book_param)
+    if book.update(book_params)
       render json: {
             status: 200,
             result: {
@@ -76,7 +76,7 @@ class Api::V1::BooksController < ApplicationController
 
   private
 
-  def book_param
+  def book_params
     params.permit(:name,
                   :image,
                   :price,
