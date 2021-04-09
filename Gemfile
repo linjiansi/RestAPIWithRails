@@ -19,6 +19,7 @@ gem 'rack-cors'
 gem 'jwt'
 gem 'kaminari'
 gem 'httpclient'
+gem 'dotenv-rails'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
