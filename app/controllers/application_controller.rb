@@ -11,7 +11,7 @@ class ApplicationController < ActionController::API
   def decoded_token
     if auth_header
       token = auth_header.split[1]
-      JWT.decode(token, 'password', true, algorithm: 'HS256') rescue JWT::DecodeError nil
+      JWT.decode(token, 'password', true, algorithm: 'HS256') rescue nil
     end
   end
 
@@ -25,36 +25,30 @@ class ApplicationController < ActionController::API
     !!logged_in_user
   end
 
-  def error_message
-    render json: {
-      result: {
-        message: '見つかりません',
-        description: 'システム管理者にお問い合わせください'
-      }
-    }
-  end
-
   def authorized_user
     error_message unless logged_in?
   end
 
-  def authorize_error
+  def render_error_message(message, description)
     render json: {
-        result: {
-            message: "認証エラーです",
-            description: "リクエストをご確認ください"
-        }
+        result: { message: message, description: description }
     }
+  end
+
+  def error_message
+    render_error_message("見つかりません",
+                         "システム管理者にお問い合わせください")
+  end
+
+  def authorize_error
+    render_error_message("認証エラーです",
+                         "リクエストをご確認ください")
+  end
+
+  def internal_error
+    render_error_message("システムエラーが起こりました",
+                         "システム管理者にお問い合わせください")
   end
 
   rescue_from StandardError, with: :internal_error
-
-  def internal_error
-    render json: {
-        result: {
-            message: "システムエラーが起こりました",
-            description: "システム管理者にお問い合わせください"
-        }
-    }
-  end
 end
