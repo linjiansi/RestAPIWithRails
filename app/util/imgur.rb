@@ -10,7 +10,7 @@ module Imgur
     response = HTTPClient.new.post(URI.parse(URL),
                                    { image: base64 },
                                    auth_header)
-    result_hash = JSON.load(response.body)
+    result_hash = JSON.parse(response.body)
     result_hash['data']['link']
   end
 end
