@@ -1,24 +1,25 @@
 class ApplicationController < ActionController::API
-
   def encode_token(palyload)
-    JWT.encode(palyload, 'password')
+    JWT.encode(palyload, "password")
   end
 
   def auth_header
-    request.headers['Authorization']
+    request.headers["Authorization"]
   end
 
   def decoded_token
-    if auth_header
-      token = auth_header.split[1]
-      JWT.decode(token, 'password', true, algorithm: 'HS256') rescue nil
+    return unless auth_header
+
+    token = auth_header.split[1]
+    begin
+      JWT.decode(token, "password", true, algorithm: "HS256")
+    rescue StandardError
+      nil
     end
   end
 
   def logged_in_user
-    if decoded_token
-      User.find_by(id: decoded_token[0]['user_id'])
-    end
+    User.find_by(id: decoded_token[0]["user_id"]) if decoded_token
   end
 
   def logged_in?
@@ -31,7 +32,7 @@ class ApplicationController < ActionController::API
 
   def render_error_message(message, description)
     render json: {
-        result: { message: message, description: description }
+      result: { message: message, description: description }
     }
   end
 
