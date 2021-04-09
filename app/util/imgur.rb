@@ -2,7 +2,7 @@ require 'httpclient'
 
 module Imgur
 
-  URL = "https://api.imgur.com/3/image"
+  URL = "https://api.imgur.com/3/image".freeze
 
   def self.upload(base64)
     @client_id = "585be2db01fab46"
