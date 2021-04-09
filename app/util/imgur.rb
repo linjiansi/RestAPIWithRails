@@ -1,12 +1,12 @@
 require 'httpclient'
+require 'dotenv/load'
 
 module Imgur
 
   URL = "https://api.imgur.com/3/image".freeze
 
   def self.upload(base64)
-    @client_id = "585be2db01fab46"
-    auth_header = { Authorization: "Client-ID #{@client_id}" }
+    auth_header = { Authorization: "Client-ID #{ENV['CLIENT_ID']}" }
     response = HTTPClient.new.post(URI.parse(URL),
                                    { image: base64 },
                                    auth_header)
