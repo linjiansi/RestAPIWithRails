@@ -1,6 +1,6 @@
 class Api::V1::UsersController < ApplicationController
 
-  before_action :authorized_checker, only: [:logout]
+  before_action :authorized_user, only: [:logout]
 
   def login
     login_user = User.find_by(email: params[:email])

@@ -1,6 +1,6 @@
 class Api::V1::BooksController < ApplicationController
 
-  before_action :authorized_checker
+  before_action :authorized_user
 
   def fetch_books
     books_info = logged_in_user

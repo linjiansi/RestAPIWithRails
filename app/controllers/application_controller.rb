@@ -39,7 +39,7 @@ class ApplicationController < ActionController::API
     }
   end
 
-  def authorized_checker
+  def authorized_user
     error_message unless logged_in?
   end
 
