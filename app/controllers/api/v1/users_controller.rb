@@ -20,8 +20,8 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def sign_up
-    sign_up_user = User.create(user_params)
-    if sign_up_user.present?
+    sign_up_user = User.new(user_params)
+    if sign_up_user.save
       token = encode_token({user_id: sign_up_user.id })
       render json: {
           status: 200,

@@ -21,8 +21,8 @@ class Api::V1::BooksController < ApplicationController
   end
 
   def add_book
-    book = logged_in_user.books.create(book_params)
-    if book.present?
+    book = logged_in_user.books.new(book_params)
+    if book.save
       render json: {
           status: 200,
           result: {
