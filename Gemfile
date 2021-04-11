@@ -38,6 +38,7 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'pry-rails'
   gem 'pry-byebug'
+  gem 'rails-i18n'
 end
 
 group :development do
