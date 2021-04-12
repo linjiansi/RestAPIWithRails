@@ -6,7 +6,7 @@ class Api::V1::BooksController < ApplicationController
                  .books
                  .page(fetch_book_param[:page])
 
-    if books_info.present?
+    if books_info
       render json: {
         status: 200,
         result: books_info.per(fetch_book_param[:limit]),
