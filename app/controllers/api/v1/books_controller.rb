@@ -79,14 +79,14 @@ class Api::V1::BooksController < ApplicationController
 
   private
 
-  def book_params
-    params.permit(:name,
-                  :image,
-                  :price,
-                  :purchase_date)
-  end
+    def book_params
+      params.permit(:name,
+                    :image,
+                    :price,
+                    :purchase_date)
+    end
 
-  def fetch_book_param
-    params.permit(:limit, :page)
-  end
+    def fetch_book_param
+      params.permit(:limit, :page)
+    end
 end
