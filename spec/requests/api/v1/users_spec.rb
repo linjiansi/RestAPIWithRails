@@ -40,7 +40,7 @@ RSpec.describe "Api::V1::Users",
 
     it "returns http success" do
       delete "/api/v1/logout"
-
+      #ヘッダーにトークンを付与させる部分がわからない状態です。
     end
   end
 end
