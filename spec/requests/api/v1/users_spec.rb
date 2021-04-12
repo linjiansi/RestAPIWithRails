@@ -1,6 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe "Api::V1::Users", type: :request do
+RSpec.describe "Api::V1::Users",
+               type: :request do
 
   let(:sign_up_user) { build(:user) }
   let!(:login_user) { create(:user) }
