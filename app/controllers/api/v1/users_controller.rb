@@ -3,6 +3,7 @@ class Api::V1::UsersController < ApplicationController
 
   def login
     login_user = User.find_by(email: params[:email])
+
     if login_user&.authenticate(params[:password])
       token = encode_token({ user_id: login_user.id })
       render json: {
@@ -20,6 +21,7 @@ class Api::V1::UsersController < ApplicationController
 
   def sign_up
     sign_up_user = User.new(user_params)
+    
     if sign_up_user.save
       token = encode_token({ user_id: sign_up_user.id })
       render json: {
