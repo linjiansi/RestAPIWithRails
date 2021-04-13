@@ -4,12 +4,12 @@ class Api::V1::BooksController < ApplicationController
   def index
     books_info = logged_in_user
                  .books
-                 .page(fetch_book_param[:page])
+                 .page(fetch_book_params[:page])
 
     if books_info
       render json: {
         status: 200,
-        result: books_info.per(fetch_book_param[:limit]),
+        result: books_info.per(fetch_book_params[:limit]),
         total_count: logged_in_user.books.count,
         total_page: books_info.total_pages,
         current_page: books_info.current_page,
@@ -86,7 +86,7 @@ class Api::V1::BooksController < ApplicationController
                     :purchase_date)
     end
 
-    def fetch_book_param
+    def fetch_book_params
       params.permit(:limit, :page)
     end
 end
