@@ -1,17 +1,5 @@
 class ApplicationController < ActionController::API
-  def encode_token(palyload)
-    JWT.encode(palyload, "password")
-  end
-
-  def decoded_token
-    auth_header = request.headers["Authorization"]
-    token = auth_header.split[1]
-    begin
-      JWT.decode(token, "password", true, algorithm: "HS256")
-    rescue StandardError
-      nil
-    end
-  end
+  include JwtManager
 
   def logged_in_user
     User.find_by(id: decoded_token[0]["user_id"]) if decoded_token
