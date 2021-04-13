@@ -5,9 +5,10 @@ class CreateBooks < ActiveRecord::Migration[6.1]
       t.string :image
       t.integer :price
       t.string :purchase_date
-      t.references :user, foreign_key: true
+      t.references :user, null: false
 
       t.timestamps
     end
+    add_foreign_key :books, :users
   end
 end
