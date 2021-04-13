@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       post '/sign_up',  to: 'users#sign_up'
       delete '/logout', to: 'users#logout'
 
-      resources :books, only: [:index, :create, :show, :update]
+      resources :books, only: %i(index create show update)
     end
   end
 end
