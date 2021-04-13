@@ -10,10 +10,9 @@ class ApplicationController < ActionController::API
   end
 
   def authorized_user
-    unless logged_in?
-      render_error_message(I18n.t("errors.not_found"),
-                           I18n.t("errors.contact_system_admin"))
-    end
+    retunr if logged_in?
+    render_error_message(I18n.t("errors.not_found"),
+                         I18n.t("errors.contact_system_admin"))
   end
 
   def render_error_message(message, description)
