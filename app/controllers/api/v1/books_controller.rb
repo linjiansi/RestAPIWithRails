@@ -16,7 +16,8 @@ class Api::V1::BooksController < ApplicationController
         limit: books_info.limit_value
       }
     else
-      error_message
+      render_error_message(I18n.t("errors.not_found"),
+                           I18n.t("errors.contact_system_admin"))
     end
   end
 
@@ -35,7 +36,8 @@ class Api::V1::BooksController < ApplicationController
         }
       }
     else
-      error_message
+      render_error_message(i18n.t("errors.not_found"),
+                           i18n.t("errors.contact_system_admin"))
     end
   end
 
@@ -54,7 +56,8 @@ class Api::V1::BooksController < ApplicationController
         }
       }
     else
-      error_message
+      render_error_message(i18n.t("errors.not_found"),
+                           i18n.t("errors.contact_system_admin"))
     end
   end
 
@@ -73,7 +76,8 @@ class Api::V1::BooksController < ApplicationController
         }
       }
     else
-      error_message
+      render_error_message(i18n.t("errors.not_found"),
+                           i18n.t("errors.contact_system_admin"))
     end
   end
 

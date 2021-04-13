@@ -10,7 +10,8 @@ class ApplicationController < ActionController::API
   end
 
   def authorized_user
-    error_message unless logged_in?
+    render_error_message(I18n.t("errors.not_found"),
+                         I18n.t("errors.contact_system_admin")) unless logged_in?
   end
 
   def render_error_message(message, description)
@@ -19,19 +20,9 @@ class ApplicationController < ActionController::API
     }
   end
 
-  def error_message
-    render_error_message("見つかりません",
-                         "システム管理者にお問い合わせください")
-  end
-
-  def authorize_error
-    render_error_message("認証エラーです",
-                         "リクエストをご確認ください")
-  end
-
   def internal_error
-    render_error_message("システムエラーが起こりました",
-                         "システム管理者にお問い合わせください")
+    render_error_message(I18n.t("errors.occur_system_error"),
+                         I18n.t("errors.contact_system_admin"))
   end
 
   rescue_from StandardError, with: :internal_error
