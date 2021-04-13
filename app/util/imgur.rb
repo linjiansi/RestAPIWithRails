@@ -1,6 +1,3 @@
-require "httpclient"
-require "dotenv/load"
-
 module Imgur
   URL = "https://api.imgur.com/3/image".freeze
 
