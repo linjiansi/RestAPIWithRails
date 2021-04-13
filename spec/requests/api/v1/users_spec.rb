@@ -17,7 +17,9 @@ RSpec.describe "Api::V1::Users",
     end
 
     it "returns http response" do
-      expect(JSON.parse(response.body)["result"]).to include("id", "email", "token")
+      expect(JSON.parse(response.body)["result"]).to include({ "id" => login_user.id,
+                                                               "email" => "#{login_user.email}",
+                                                             })
     end
   end
 
@@ -32,7 +34,9 @@ RSpec.describe "Api::V1::Users",
     end
 
     it "returns http response" do
-      expect(JSON.parse(response.body)["result"]).to include("id", "email", "token")
+      expect(JSON.parse(response.body)["result"]).to include({ "id" => sign_up_user.id,
+                                                               "email" => "#{sign_up_user.email}",
+                                                             })
     end
   end
 
