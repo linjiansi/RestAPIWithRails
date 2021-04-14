@@ -18,7 +18,7 @@ RSpec.describe "Api::V1::Users",
 
     it "returns http response" do
       expect(JSON.parse(response.body)["result"]).to include({ "id" => login_user.id,
-                                                               "email" => "#{login_user.email}",
+                                                               "email" => login_user.email,
                                                              })
     end
   end
