@@ -6,7 +6,6 @@ RSpec.describe "Api::V1::Users", type: :request do
   let!(:login_user) { create(:user) }
 
   describe "#login" do
-
     before do
       post "/api/v1/login", params: { email: login_user.email, password: login_user.password }
     end
@@ -23,7 +22,6 @@ RSpec.describe "Api::V1::Users", type: :request do
   end
 
   describe "#sign_up" do
-
     before do
       post "/api/v1/sign_up", params: { email: sign_up_user.email, password: sign_up_user.password }
     end
