@@ -14,7 +14,7 @@ class Api::V1::BooksController < ApplicationController
         total_page: books_info.total_pages,
         current_page: books_info.current_page,
         limit: books_info.limit_value
-      }
+      }, status: 200
     else
       render_error_message(I18n.t("errors.not_found"),
                            I18n.t("errors.contact_system_admin"),
@@ -35,7 +35,7 @@ class Api::V1::BooksController < ApplicationController
           price: book.price,
           purchase_date: book.purchase_date
         }
-      }
+      }, statua: 200
     else
       render_error_message(I18n.t("errors.not_found"),
                            I18n.t("errors.contact_system_admin"),
@@ -56,7 +56,7 @@ class Api::V1::BooksController < ApplicationController
           price: book.price,
           purchase_date: book.purchase_date
         }
-      }
+      }, status: 200
     else
       render_error_message(I18n.t("errors.not_found"),
                            I18n.t("errors.contact_system_admin"),
@@ -77,7 +77,7 @@ class Api::V1::BooksController < ApplicationController
           price: book.price,
           purchase_date: book.purchase_date
         }
-      }
+      }, status: 200
     else
       render_error_message(I18n.t("errors.not_found"),
                            I18n.t("errors.contact_system_admin"),

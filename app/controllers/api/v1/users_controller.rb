@@ -14,7 +14,7 @@ class Api::V1::UsersController < ApplicationController
           email: login_user.email,
           token: token
         }
-      }
+      }, status: 200
     else
       render_error_message(I18n.t("errors.auth_error"),
                            I18n.t("errors.confirm_request"),
@@ -34,7 +34,7 @@ class Api::V1::UsersController < ApplicationController
           email: sign_up_user.email,
           token: token
         }
-      }
+      }, status: 200
     else
       render_error_message(I18n.t("errors.auth_error"),
                            I18n.t("errors.confirm_request"),
@@ -43,7 +43,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def logout
-    render json: { status: 200 }
+    render json: { status: 200 }, status: 200
   end
 
   private
