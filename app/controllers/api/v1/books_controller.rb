@@ -35,7 +35,7 @@ class Api::V1::BooksController < ApplicationController
           price: book.price,
           purchase_date: book.purchase_date
         }
-      }, statua: 200
+      }, status: 200
     else
       render_error_message(I18n.t("errors.not_found"),
                            I18n.t("errors.contact_system_admin"),
