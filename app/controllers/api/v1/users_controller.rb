@@ -1,5 +1,4 @@
 class Api::V1::UsersController < ApplicationController
-  include JwtManager
   before_action :authorized_user, only: :logout
 
   def login
