@@ -44,7 +44,7 @@ class Api::V1::BooksController < ApplicationController
   def show
     book = logged_in_user.books.find_by(id: params[:id])
 
-    if book.present?
+    if book
       render json: {
         status: 200,
         result: {
