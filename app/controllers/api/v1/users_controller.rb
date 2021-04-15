@@ -17,7 +17,8 @@ class Api::V1::UsersController < ApplicationController
       }
     else
       render_error_message(I18n.t("errors.auth_error"),
-                           I18n.t("errors.confirm_request"))
+                           I18n.t("errors.confirm_request"),
+                           400)
     end
   end
 
@@ -36,7 +37,8 @@ class Api::V1::UsersController < ApplicationController
       }
     else
       render_error_message(I18n.t("errors.auth_error"),
-                           I18n.t("errors.confirm_request"))
+                           I18n.t("errors.confirm_request"),
+                           400)
     end
   end
 

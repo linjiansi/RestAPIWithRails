@@ -17,7 +17,8 @@ class Api::V1::BooksController < ApplicationController
       }
     else
       render_error_message(I18n.t("errors.not_found"),
-                           I18n.t("errors.contact_system_admin"))
+                           I18n.t("errors.contact_system_admin"),
+                           404)
     end
   end
 
@@ -37,7 +38,8 @@ class Api::V1::BooksController < ApplicationController
       }
     else
       render_error_message(I18n.t("errors.not_found"),
-                           I18n.t("errors.contact_system_admin"))
+                           I18n.t("errors.contact_system_admin"),
+                           404)
     end
   end
 
@@ -57,7 +59,8 @@ class Api::V1::BooksController < ApplicationController
       }
     else
       render_error_message(I18n.t("errors.not_found"),
-                           I18n.t("errors.contact_system_admin"))
+                           I18n.t("errors.contact_system_admin"),
+                           404)
     end
   end
 
@@ -77,7 +80,8 @@ class Api::V1::BooksController < ApplicationController
       }
     else
       render_error_message(I18n.t("errors.not_found"),
-                           I18n.t("errors.contact_system_admin"))
+                           I18n.t("errors.contact_system_admin"),
+                           404)
     end
   end
 
