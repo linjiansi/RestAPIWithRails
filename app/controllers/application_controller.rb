@@ -3,19 +3,15 @@ class ApplicationController < ActionController::API
 
   rescue_from StandardError, with: :internal_error
 
-  def logged_in_user
-    User.find_by(id: decoded_token[0]["user_id"]) if decoded_token
-  end
-
-  def logged_in?
-    !!logged_in_user
-  end
-
   def authorized_user
-    return if logged_in?
-    render_error_message(I18n.t("errors.not_found"),
-                         I18n.t("errors.contact_system_admin"),
-                         404)
+    begin
+      decoded_token
+    rescue
+      render_error_message(I18n.t("errors.not_found"),
+                           I18n.t("errors.contact_system_admin"),
+                           404)
+    end
+
   end
 
   def render_error_message(message, description, status)

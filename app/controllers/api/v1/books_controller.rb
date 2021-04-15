@@ -2,7 +2,7 @@ class Api::V1::BooksController < ApplicationController
   before_action :authorized_user
 
   def index
-    books_info = logged_in_user
+    books_info = @logged_in_user
                  .books
                  .page(fetch_book_params[:page])
 
@@ -10,7 +10,7 @@ class Api::V1::BooksController < ApplicationController
       render json: {
         status: 200,
         result: books_info.per(fetch_book_params[:limit]),
-        total_count: logged_in_user.books.count,
+        total_count: @logged_in_user.books.count,
         total_page: books_info.total_pages,
         current_page: books_info.current_page,
         limit: books_info.limit_value
@@ -23,7 +23,7 @@ class Api::V1::BooksController < ApplicationController
   end
 
   def create
-    book = logged_in_user.books.new(book_params)
+    book = @logged_in_user.books.new(book_params)
 
     if book.save
       render json: {
@@ -44,7 +44,7 @@ class Api::V1::BooksController < ApplicationController
   end
 
   def show
-    book = logged_in_user.books.find_by(id: params[:id])
+    book = @logged_in_user.books.find_by(id: params[:id])
 
     if book
       render json: {
@@ -65,7 +65,7 @@ class Api::V1::BooksController < ApplicationController
   end
 
   def update
-    book = logged_in_user.books.find_by(id: params[:id])
+    book = @logged_in_user.books.find_by(id: params[:id])
 
     if book.update(book_params)
       render json: {
