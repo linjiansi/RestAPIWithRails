@@ -35,14 +35,14 @@ class Api::V1::UsersController < ApplicationController
       params.permit(:email, :password)
     end
 
-  def render_response(status, user, token)
-    result = {
-        id: user.id,
-        email: user.email,
-        token: token
-    }
-    render json: { status: status, result: result },
-           except: %i(created_id updated_id),
-           status: 200
-  end
+    def render_response(status, user, token)
+      result = {
+          id: user.id,
+          email: user.email,
+          token: token
+      }
+      render json: { status: status, result: result },
+             except: %i(created_id updated_id),
+             status: 200
+    end
 end
