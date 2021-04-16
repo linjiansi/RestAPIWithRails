@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::API
+  before_action :authorized_user
+
   include JwtManager
 
   rescue_from StandardError, with: :internal_error

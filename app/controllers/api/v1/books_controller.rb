@@ -1,6 +1,4 @@
 class Api::V1::BooksController < ApplicationController
-  before_action :authorized_user
-
   def index
     books_info = @logged_in_user
                  .books
