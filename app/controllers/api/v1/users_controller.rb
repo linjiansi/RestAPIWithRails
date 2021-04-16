@@ -4,14 +4,7 @@ class Api::V1::UsersController < ApplicationController
 
     if login_user&.authenticate(params[:password])
       token = encode_token({ user_id: login_user.id })
-      render json: {
-        status: 200,
-        result: {
-          id: login_user.id,
-          email: login_user.email,
-          token: token
-        }
-      }, status: 200
+      render_response(200, login_user, token)
     else
       render_error_message(I18n.t("errors.auth_error"),
                            I18n.t("errors.confirm_request"),
@@ -24,14 +17,7 @@ class Api::V1::UsersController < ApplicationController
 
     if sign_up_user.save
       token = encode_token({ user_id: sign_up_user.id })
-      render json: {
-        status: 200,
-        result: {
-          id: sign_up_user.id,
-          email: sign_up_user.email,
-          token: token
-        }
-      }, status: 200
+      render_response(200, sign_up_user, token)
     else
       render_error_message(I18n.t("errors.auth_error"),
                            I18n.t("errors.confirm_request"),
@@ -48,4 +34,15 @@ class Api::V1::UsersController < ApplicationController
     def user_params
       params.permit(:email, :password)
     end
+
+  def render_response(status, user, token)
+    result = {
+        id: user.id,
+        email: user.email,
+        token: token
+    }
+    render json: { status: status, result: result },
+           except: %i(created_id updated_id),
+           status: 200
+  end
 end
