@@ -6,7 +6,12 @@ class ApplicationController < ActionController::API
   rescue_from StandardError, with: :internal_error
 
   def authorized_user
-    decoded_token
+    auth_header = request.headers["Authorization"]
+    return unless auth_header
+
+    token = auth_header.split[1]
+    decoded_token = decode_token(token)
+    @logged_in_user = User.find_by(id: decoded_token[0]["user_id"])
   rescue StandardError
     render_error_message(I18n.t("errors.not_found"),
                          I18n.t("errors.contact_system_admin"),
