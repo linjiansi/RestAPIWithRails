@@ -1,6 +1,6 @@
 module JwtManager
-  def encode_token(palyload)
-    JWT.encode(palyload, "password")
+  def encode_token(payload)
+    JWT.encode(payload, "password")
   end
 
   def decoded_token
