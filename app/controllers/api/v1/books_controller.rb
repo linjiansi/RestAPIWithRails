@@ -1,11 +1,11 @@
 class Api::V1::BooksController < ApplicationController
   def index
-    books_info = @logged_in_user
+    books = @logged_in_user
                  .books
                  .page(fetch_book_params[:page])
 
-    if books_info
-      render_response(200, books_info, @logged_in_user)
+    if books
+      render_response(200, books, @logged_in_user)
     else
       render_error_message(I18n.t("errors.not_found"),
                            I18n.t("errors.contact_system_admin"),
